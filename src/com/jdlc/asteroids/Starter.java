@@ -46,12 +46,13 @@ public class Starter {
         });        
     }
     
+    // Starting point 
     public void start() {
         if(current != null){
             current.show();
             return;
         }
-        
+        new Game();
     }
 
     public void stop() {
