@@ -195,6 +195,22 @@ public class GameWorld {
 	 */
 	
 	
+	/*
+	 * Game "engine" methods
+	 */
+	
+	public void gameClockTick(int time) {
+		
+	}
+	
+	// Prints all objects in the game world vector list
+	public void map() {
+		
+	}
+	
+	/*
+	 * End game "engine" methods
+	 */
 	
 	
 	/*
