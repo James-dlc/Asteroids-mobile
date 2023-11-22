@@ -33,7 +33,7 @@ public abstract class GameObject {
 	}
 	
 	// Sets x and y coordinates of the Game Object
-	public void setLocation(double x, double y) {
+	public void setCoordinates(double x, double y) {
 		coordinates.setX((double)Math.round(x));
 		coordinates.setY((double)Math.round(y));
 	}

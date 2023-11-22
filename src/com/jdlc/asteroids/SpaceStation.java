@@ -10,7 +10,7 @@ public class SpaceStation extends FixedGameObject{
 	// boolean that determines if the Space Station light is on, and a teal color rgb code.
 	public SpaceStation() {
 		id = getfId();
-		blinkRate = random.nextInt(3) + 1;
+		blinkRate = random.nextInt(4) + 1;
 		lightOn = true;
 		setColor(64, 224, 208);
 	}
@@ -28,13 +28,16 @@ public class SpaceStation extends FixedGameObject{
 		return blinkRate;
 	}
 	
+	// Returns Space Station's ID
 	public int getId() {
 		return id;
 	}
 	
+	// Overriding toString method to correctly print the details of the object and calls
+	// parent (GameObject) details as well
 	public String toString() {
 		String parentString = super.toString();
-		String thisString = "Station: " + id + " blink rate = " + blinkRate;
-		return parentString + thisString;
+		String thisString = "ID: " + id + " blink rate = " + blinkRate;
+		return "Station: " + parentString + thisString;
 	}
 }
