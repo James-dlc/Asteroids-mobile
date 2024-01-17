@@ -68,6 +68,8 @@ public class GameWorld {
 	 */
 	
 	
+	
+	
 	/*
 	 * PLAYER SHIP and NON-PLAYER SHIP functionality methods: firing missiles
 	 * reloading, turning, rotating launcher, speeding up, slowing down
@@ -151,13 +153,16 @@ public class GameWorld {
 	 * End PLAYER SHIP, NON-PLAYER SHIP functionality methods
 	 */
 	
+	
+	
+	
 	/*
 	 * Destruction methods
 	 */
 	
 	// Player Ship's missile hits an asteroid
 	public void asteroidDestroyed() {
-		
+		Missile missileObj = FindMissile(MissileSource.PLAYERSHIP);
 	}
 	
 	// Player Ship's missile hits a Non-Player Ship
@@ -169,6 +174,7 @@ public class GameWorld {
 	public void missileHitPS() {
 		
 	}
+	
 	
 	// Player Ship destroyed by asteroid collision (lose life)
 	public void asteroidCollisionPS() {
@@ -195,6 +201,8 @@ public class GameWorld {
 	 */
 	
 	
+	
+	
 	/*
 	 * Game "engine" methods
 	 */
@@ -211,6 +219,8 @@ public class GameWorld {
 	/*
 	 * End game "engine" methods
 	 */
+	
+	
 	
 	
 	/*
@@ -238,6 +248,34 @@ public class GameWorld {
 			}
 		}
 		System.err.println("Non-Player Ship not found.");
+		return null;
+	}
+	
+	// Search for and return Missile. Parameter determines whether it is from PS or NPS
+	private Missile findMissile(String missileType) {
+		for (int i = 0; i < gwObjects.size(); i++) {
+			if (gwObjects.elementAt(i) instanceof Missile) {
+				Missile missile = (Missile) gwObjects.elementAt(i);
+				//if (missile.getSource() == missileType) {
+					
+					return missile;
+				}
+			}
+		}
+		System.err.println("Missile not found.");
+		return null;
+	}
+	
+	
+	// Search for and return Asteroid
+	public Asteroid findAsteroid() {
+		for (int i = 0; i < gwObjects.size(); i++) {
+			if (gwObjects.elementAt(i) instanceof Asteroid) {
+				Asteroid asteroid = (Asteroid) gwObjects.elementAt(i);
+				return asteroid;
+			}
+		}
+		System.err.println("Asteroid not found.");
 		return null;
 	}
 	
