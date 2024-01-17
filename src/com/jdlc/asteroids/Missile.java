@@ -32,8 +32,9 @@ public class Missile extends MovableGameObject{
 		return fuelLevel;
 	}
 	
-	public MissileSource getSource() {
-		return missileSource;
+	public String getSource() {
+		String shooter = missileSource.toString();
+		return shooter;
 	}
 	
 	@Override

@@ -161,8 +161,13 @@ public class GameWorld {
 	 */
 	
 	// Player Ship's missile hits an asteroid
+	// The 'find' methods will look for and remove the objects: missile and asteroid
 	public void asteroidDestroyed() {
-		Missile missileObj = FindMissile(MissileSource.PLAYERSHIP);
+		String playerMissile = "PLAYERSHIP";
+		findRemoveMissile(playerMissile);
+		findRemoveAsteroid();
+		
+		score += 10;
 	}
 	
 	// Player Ship's missile hits a Non-Player Ship
@@ -251,33 +256,39 @@ public class GameWorld {
 		return null;
 	}
 	
-	// Search for and return Missile. Parameter determines whether it is from PS or NPS
-	private Missile findMissile(String missileType) {
+	// Search for and remove Missile. Parameter determines whether it is from PS or NPS
+	// Using same search algorithm to find instance of missile. Once it's found, there's a check
+	// to see if it's from the PS or NPS.
+	// The parameters take in who the shooter is
+	private void findRemoveMissile(String missileShooter) {
 		for (int i = 0; i < gwObjects.size(); i++) {
 			if (gwObjects.elementAt(i) instanceof Missile) {
 				Missile missile = (Missile) gwObjects.elementAt(i);
-				//if (missile.getSource() == missileType) {
-					
-					return missile;
+				
+				// Later will add a collision detect/coordinate check to make sure the right missile
+				// was found if needed.
+				if (missile.getSource() == missileShooter) {
+					gwObjects.removeElementAt(i);
 				}
 			}
 		}
 		System.err.println("Missile not found.");
-		return null;
 	}
 	
 	
-	// Search for and return Asteroid
-	public Asteroid findAsteroid() {
+	// Search for and remove Asteroid
+	public void findRemoveAsteroid() {
 		for (int i = 0; i < gwObjects.size(); i++) {
 			if (gwObjects.elementAt(i) instanceof Asteroid) {
 				Asteroid asteroid = (Asteroid) gwObjects.elementAt(i);
-				return asteroid;
+				// Later will add a collision detect/coordinate check to make sure the right asteroid
+				// was found 
+				gwObjects.removeElementAt(i);
 			}
 		}
 		System.err.println("Asteroid not found.");
-		return null;
 	}
+	
 	
 }
 
