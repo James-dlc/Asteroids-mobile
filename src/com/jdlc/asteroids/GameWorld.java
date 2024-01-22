@@ -161,44 +161,61 @@ public class GameWorld {
 	 */
 	
 	// Player Ship's missile hits an asteroid
-	// The 'find' methods will look for and remove the objects: missile and asteroid
+	// The 'find' methods will look for and remove the objects: missile and asteroid and add 10 to score
 	public void asteroidDestroyed() {
 		String playerMissile = "PLAYERSHIP";
-		findRemoveMissile(playerMissile);
-		findRemoveAsteroid();
+		removeMissile(playerMissile);
+		removeAsteroid();
 		
 		score += 10;
 	}
 	
 	// Player Ship's missile hits a Non-Player Ship
 	public void npsDestroyed() {
+		String playerMissile = "PLAYERSHIP";
+		removeMissile(playerMissile);
+		removeNPS();
 		
+		score += 15;
 	}
 	
 	// Player Ship destroyed by NPS missile (lose life)
 	public void missileHitPS() {
+		String npsMissile = "NONPLAYERSHIP";
+		removeMissile(npsMissile);
+		removePlayerShip();
 		
+		lives--;
 	}
 	
 	
 	// Player Ship destroyed by asteroid collision (lose life)
 	public void asteroidCollisionPS() {
+		removeAsteroid();
+		removePlayerShip();
 		
+		lives--;
 	}
 	
 	// Player Ship collision with Non-Player Ship (lose life)
 	public void npsCollisionPS() {
+		removeNPS();
+		removePlayerShip();
 		
+		lives--;
 	}
 	
 	// Asteroid collision with another asteroid
 	public void asteroidCollisionAsteroid() {
+		removeAsteroid();
+		removeAsteroid();
 		
 	}
 	
 	// Non-Player Ship collision with asteroid
 	public void npsCollisionAsteroid() {
-		
+		removeNPS();
+		removeAsteroid();
 	}
 	
 	/*
@@ -218,7 +235,10 @@ public class GameWorld {
 	
 	// Prints all objects in the game world vector list
 	public void map() {
-		
+		System.out.flush();
+		while (gwObjects.hasNext()) {
+			
+		}
 	}
 	
 	/*
@@ -259,8 +279,10 @@ public class GameWorld {
 	// Search for and remove Missile. Parameter determines whether it is from PS or NPS
 	// Using same search algorithm to find instance of missile. Once it's found, there's a check
 	// to see if it's from the PS or NPS.
-	// The parameters take in who the shooter is
-	private void findRemoveMissile(String missileShooter) {
+	// The parameters take in who the shooter is 
+	// **** that parameter may not be needed since there will be a collision check later to make sure
+	// **** that the right colliding objects are removed
+	private void removeMissile(String missileShooter) {
 		for (int i = 0; i < gwObjects.size(); i++) {
 			if (gwObjects.elementAt(i) instanceof Missile) {
 				Missile missile = (Missile) gwObjects.elementAt(i);
@@ -277,7 +299,7 @@ public class GameWorld {
 	
 	
 	// Search for and remove Asteroid
-	public void findRemoveAsteroid() {
+	public void removeAsteroid() {
 		for (int i = 0; i < gwObjects.size(); i++) {
 			if (gwObjects.elementAt(i) instanceof Asteroid) {
 				Asteroid asteroid = (Asteroid) gwObjects.elementAt(i);
@@ -289,7 +311,24 @@ public class GameWorld {
 		System.err.println("Asteroid not found.");
 	}
 	
+	// **** test removeElement vs removeElementAt 
+	// Calls the search for NPS then removes from gwObjects
+	public void removeNPS() {
+		NonPlayerShip nps = findNonPlayerShip();
+		gwObjects.removeElement(nps);
+	}
+	// **** test **** //
 	
+	// Finds and removes Player Ship
+	public void removePlayerShip() {
+		for (int i = 0; i < gwObjects.size(); i++) {
+			if (gwObjects.elementAt(i) instanceof PlayerShip) {
+				PlayerShip ps = (PlayerShip) gwObjects.elementAt(i);
+				gwObjects.removeElementAt(i);
+			}
+		}
+		System.err.println("Player Ship not found.");
+	}
 }
 
 
