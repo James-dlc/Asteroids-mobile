@@ -64,7 +64,7 @@ public class GameWorld {
 	}
 	
 	/*
-	 * End of creation methods
+	 * End of Game Object creation methods
 	 */
 	
 	
@@ -229,6 +229,9 @@ public class GameWorld {
 	 * Game "engine" methods
 	 */
 	
+	// With each clock "tick", every game object that's an instance of IMoveable has it's
+	// move() method called. If the object is also a Missile, there's a check to see if the
+	// missile still has enough fuel to exist. If it doesn't it is removed from the vector list
 	public void gameClockTick(int time) {
 		
 	}
@@ -236,8 +239,8 @@ public class GameWorld {
 	// Prints all objects in the game world vector list
 	public void map() {
 		System.out.flush();
-		while (gwObjects.hasNext()) {
-			
+		for (int i = 0; i < gwObjects.size(); i++){
+			System.out.println(gwObjects.get(i));
 		}
 	}
 	

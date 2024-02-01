@@ -61,26 +61,32 @@ public class PlayerShip extends MovableGameObject implements ISteerable{
 		super.move();
 	}
 	
+	// Calls PlayerShip's launcher steer method
 	public void steerLauncher(int deltaAngle) {
 		launcher.steer(deltaAngle);
 	}
 	
+	// Returns integer value of the current angle of PlayerShip's launcher
 	public int getLauncherAngle() {
 		return launcher.getAngle();
 	}
 	
+	// Returns an integer value of the number of missiles available
 	public int getMissileCount() {
 		return missileCount;
 	}
 	
+	// Deducts the missile counter
 	public void fire() {
 		missileCount--;
 	}
 	
+	// Refills PlayerShip's missile count to the max (10)
 	public void reload() {
 		missileCount = MAXMISSILES;
 	}
 	
+	// Default spawn location is the center of the screen
 	public void center() {
 		setCoordinates(512, 384);
 	}

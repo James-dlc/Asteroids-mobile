@@ -39,13 +39,13 @@ public abstract class MovableGameObject extends GameObject implements IMovable{
 	// Override move() method
 	public void move() {
 		Point2D oldCoord = getCoordinates();
-		int deltaX = 0;
-		int deltaY = 0;
+		int newX = 0;
+		int newY = 0;
 		
-		deltaX = (int) (Math.cos(angle) * speed);
-		deltaY = (int) (Math.sin(angle) * speed);
+		newX = (int) (Math.cos(angle) * speed);
+		newY = (int) (Math.sin(angle) * speed);
 		
-		setCoordinates(oldCoord.getX() + deltaX, oldCoord.getY() + deltaY);
+		setCoordinates(oldCoord.getX() + newX, oldCoord.getY() + newY);
 		
 	}
 	
