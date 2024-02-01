@@ -232,8 +232,42 @@ public class GameWorld {
 	// With each clock "tick", every game object that's an instance of IMoveable has it's
 	// move() method called. If the object is also a Missile, there's a check to see if the
 	// missile still has enough fuel to exist. If it doesn't it is removed from the vector list
-	public void gameClockTick(int time) {
+	public void gameClockTick() {
+		for (int i = 0; i < gwObjects.size(); i++) {
+			// Checks if object is able to call the move() method (extends IMovable)
+			if (gwObjects.elementAt(i) instanceof IMovable) {
+				// Missile fuel check and removal block
+				if (gwObjects.elementAt(i) instanceof Missile) {
+					Missile missile = (Missile) gwObjects.elementAt(i);
+					
+					// If missile is out of fuel then remove missile and decrement i for counter so
+					// next object isn't skipped from the removal method. 
+					if (missile.getFuel() == 0) {
+						gwObjects.remove(i);
+						i--;
+						continue;
+					}
+					// If missile still has fuel then the move method is called. **Fuel is "consumed"
+					// in Missile's overwritten move method.
+					missile.move();
+					continue;
+				}
+				
+				// Space Station check and blink call
+				if (gwObjects.elementAt(i) instanceof SpaceStation) {
+					SpaceStation spaceStation = (SpaceStation) gwObjects.elementAt(i);
+					spaceStation.blink(time);
+					continue;
+				}
+				
+				// All other movable objects call their move method
+				IMovable moveGWObject = (IMovable) gwObjects.get(i);
+				moveGWObject.move();
+				
+			}
+		}
 		
+		time++;
 	}
 	
 	// Prints all objects in the game world vector list
