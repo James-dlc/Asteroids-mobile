@@ -2,7 +2,6 @@ package com.jdlc.asteroids;
 
 import java.util.Vector;
 
-import com.jdlc.asteroids.Missile.MissileSource;;
 
 public class GameWorld {
 	public Vector<GameObject> gwObjects;
@@ -37,14 +36,14 @@ public class GameWorld {
 	public void addNPS() {
 		NonPlayerShip nps = new NonPlayerShip();
 		gwObjects.add(nps);
-		System.out.print("A NON-PLAYER SHIP has been created.");
+		System.out.println("A NON-PLAYER SHIP has been created.");
 	}
 	
 	// Adds a Space Station to the game world
 	public void addSpaceStation() {
 		SpaceStation ss = new SpaceStation();
 		gwObjects.add(ss);
-		System.out.print("A BLINKING SPACE STATION has been created.");
+		System.out.println("A BLINKING SPACE STATION has been created.");
 	}
 	
 	// Adds Player Ship to the game world
@@ -116,6 +115,8 @@ public class GameWorld {
 		PlayerShip ps = findPlayerShip();
 		if (ps.getMissileCount() > 0) {
 			ps.fire();
+			Missile missile = new Missile(ps.getLauncherAngle(), ps.getSpeed(), ps.getCoordinates(), "PLAYERSHIP");
+			gwObjects.add(missile);
 			return;
 		}
 		else {
@@ -278,6 +279,19 @@ public class GameWorld {
 		}
 	}
 	
+	// Prints out current score, number of PS missiles, current time
+	public void gameStats() {
+		PlayerShip ps = findPlayerShip();
+		System.out.println("**Current Stats**");
+		System.out.println("Time: " + time + ", Player Score: " + score + ", Player Missiles: " + ps.getMissileCount());
+		System.out.println();
+	}
+	
+	public boolean endGame() {
+		gameOver = true;
+		return gameOver;
+	}
+	
 	/*
 	 * End game "engine" methods
 	 */
@@ -297,7 +311,7 @@ public class GameWorld {
 				return ps;
 			}
 		}
-		System.err.println("Player Ship not found.");
+		System.err.println("Spawning Player Ship..");
 		return null;
 	}
 	
@@ -319,15 +333,16 @@ public class GameWorld {
 	// The parameters take in who the shooter is 
 	// **** that parameter may not be needed since there will be a collision check later to make sure
 	// **** that the right colliding objects are removed
-	private void removeMissile(String missileShooter) {
+	private void removeMissile(String source) {
 		for (int i = 0; i < gwObjects.size(); i++) {
 			if (gwObjects.elementAt(i) instanceof Missile) {
 				Missile missile = (Missile) gwObjects.elementAt(i);
 				
 				// Later will add a collision detect/coordinate check to make sure the right missile
 				// was found if needed.
-				if (missile.getSource() == missileShooter) {
+				if (missile.getSource() == source) {
 					gwObjects.removeElementAt(i);
+					return;
 				}
 			}
 		}
@@ -343,6 +358,7 @@ public class GameWorld {
 				// Later will add a collision detect/coordinate check to make sure the right asteroid
 				// was found 
 				gwObjects.removeElementAt(i);
+				return;
 			}
 		}
 		System.err.println("Asteroid not found.");
@@ -369,7 +385,9 @@ public class GameWorld {
 }
 
 
-
+/*
+ * End search algorithms
+ */
 
 
 
