@@ -15,7 +15,7 @@ public class PlayerShip extends MovableGameObject implements ISteerable{
 		setAngle(90);
 		setColor(64, 224, 208);
 		setCoordinates(512, 384);
-		launcher = new MissileLauncher(0);
+		launcher = new MissileLauncher(90);
 		missileCount = MAXMISSILES;
 		
 	}

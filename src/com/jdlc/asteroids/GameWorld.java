@@ -78,36 +78,42 @@ public class GameWorld {
 	public void incPlayerShipSpeed() {
 		PlayerShip ps = findPlayerShip();
 		ps.incSpeed();
+		System.out.println("PLAYER SHIP speed increased by 1");
 	}
 	
 	// Decreases current Player Ship's speed
 	public void decPlayerShipSpeed() {
 		PlayerShip ps = findPlayerShip();
 		ps.decSpeed();
+		System.out.println("PLAYER SHIP speed decreaased by 1");
 	}
 	
 	// Adjusts Player Ship direction to the left
 	public void turnLeft() {
 		PlayerShip ps = findPlayerShip();
 		ps.steer(1);
+		System.out.println("PLAYER SHIP turning left by 1 degree");
 	}
 	
 	// Adjusts Player Ship direction to the right
 	public void turnRight() {
 		PlayerShip ps = findPlayerShip();
 		ps.steer(-1);
+		System.out.println("PLAYER SHIP turning right by 1 degree");
 	}
 	
 	// Rotate the ship's missile launcher counter-clockwise
 	public void rotateLauncherL() {
 		PlayerShip ps = findPlayerShip();
 		ps.steerLauncher(1);
+		System.out.println("PLAYER SHIP Launcher turning left by 1 degree");
 	}
 	
 	// Rotate the ship's missile launcher clockwise
 	public void rotateLauncherR() {
 		PlayerShip ps = findPlayerShip();
 		ps.steerLauncher(-1);
+		System.out.println("PLAYER SHIP Launcher turning right by 1 degree");
 	}
 	
 	// Fire Player Ship's missiles if they have any, if not prompt player.
@@ -117,10 +123,11 @@ public class GameWorld {
 			ps.fire();
 			Missile missile = new Missile(ps.getLauncherAngle(), ps.getSpeed(), ps.getCoordinates(), "PLAYERSHIP");
 			gwObjects.add(missile);
+			System.out.println("PLAYER SHIP fired a MISSILE");
 			return;
 		}
 		else {
-			System.out.println("Player Ship is out of missiles.");
+			System.out.println("PLAYER SHIP is out of MISSILES.");
 		}
 	}
 	
@@ -128,12 +135,14 @@ public class GameWorld {
 	public void reloadPlayerShip() {
 		PlayerShip ps = findPlayerShip();
 		ps.reload();
+		System.out.println("PLAYER SHIP reloaded on MISSILES");
 	}
 	
 	// Places Player Ship's location at center of map
 	public void center() {
 		PlayerShip ps = findPlayerShip();
 		ps.center();
+		System.out.println("PLAYER SHIP is re-centered");
 	}
 	
 	
@@ -142,10 +151,11 @@ public class GameWorld {
 		NonPlayerShip nps = findNonPlayerShip();
 		if (nps.getMissileCount() > 0) {
 			nps.fire();
+			System.out.println("NON-PLAYER SHIP fired a MISSILE");
 			return;
 		}
 		else {
-			System.out.println("Non-Player Ship is out of missiles.");
+			System.out.println("NON-PLAYER SHIP is out of MISSILES");
 		}
 	}
 	
@@ -169,6 +179,7 @@ public class GameWorld {
 		removeAsteroid();
 		
 		score += 10;
+		System.out.println("PLAYER SHIP destroyed an ASTEROID (+10)");
 	}
 	
 	// Player Ship's missile hits a Non-Player Ship
@@ -178,6 +189,7 @@ public class GameWorld {
 		removeNPS();
 		
 		score += 15;
+		System.out.println("PLAYER SHIP destroyed a NON-PLAYER SHIP (+15)");
 	}
 	
 	// Player Ship destroyed by NPS missile (lose life)
@@ -187,6 +199,7 @@ public class GameWorld {
 		removePlayerShip();
 		
 		lives--;
+		System.out.println("NON-PLAYER SHIP destroyed PLAYER SHIP (-1 life)");
 	}
 	
 	
@@ -196,6 +209,7 @@ public class GameWorld {
 		removePlayerShip();
 		
 		lives--;
+		System.out.println("ASTEROID crashed into PLAYER SHIP (-1 life)");
 	}
 	
 	// Player Ship collision with Non-Player Ship (lose life)
@@ -204,6 +218,7 @@ public class GameWorld {
 		removePlayerShip();
 		
 		lives--;
+		System.out.println("NON-PLAYER SHIP crashed into PLAYER SHIP (-1 life)");
 	}
 	
 	// Asteroid collision with another asteroid
@@ -211,12 +226,15 @@ public class GameWorld {
 		removeAsteroid();
 		removeAsteroid();
 		
+		System.out.println("ASTEROIDS crashed into each other");
 	}
 	
 	// Non-Player Ship collision with asteroid
 	public void npsCollisionAsteroid() {
 		removeNPS();
 		removeAsteroid();
+		
+		System.out.println("NON-PLAYER SHIP and an ASTEROID crashed into each other");
 	}
 	
 	/*
@@ -269,6 +287,7 @@ public class GameWorld {
 		}
 		
 		time++;
+		System.out.println("Game clock advanced 1 tick");
 	}
 	
 	// Prints all objects in the game world vector list
@@ -289,6 +308,7 @@ public class GameWorld {
 	
 	public boolean endGame() {
 		gameOver = true;
+		System.out.println("Game Over");
 		return gameOver;
 	}
 	

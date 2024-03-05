@@ -45,9 +45,6 @@ public abstract class MovableGameObject extends GameObject implements IMovable{
 		newX = (int) (Math.cos(Math.toRadians(angle)) * speed);
 		newY = (int) (Math.sin(Math.toRadians(angle)) * speed);
 		
-		System.out.println(Math.sin(Math.toRadians(angle)));
-		System.out.println(speed);
-		
 		setCoordinates(oldCoord.getX() + newX, oldCoord.getY() + newY);
 		
 	}
