@@ -1,4 +1,4 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.gamelaws;
 
 
 import static com.codename1.ui.CN.*;

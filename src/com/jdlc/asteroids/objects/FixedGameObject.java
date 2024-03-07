@@ -1,4 +1,4 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.objects;
 
 public abstract class FixedGameObject extends GameObject{
 	

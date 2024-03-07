@@ -1,4 +1,6 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.objects;
+
+import com.jdlc.asteroids.interfaces.ISteerable;
 
 public class PlayerShip extends MovableGameObject implements ISteerable{
 	

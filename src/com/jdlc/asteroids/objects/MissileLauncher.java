@@ -1,4 +1,6 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.objects;
+
+import com.jdlc.asteroids.interfaces.ISteerable;
 
 public class MissileLauncher extends MovableGameObject implements ISteerable{
 	

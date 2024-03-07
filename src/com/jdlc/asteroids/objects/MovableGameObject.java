@@ -1,6 +1,7 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.objects;
 
 import com.codename1.ui.geom.Point2D;
+import com.jdlc.asteroids.interfaces.IMovable;
 
 public abstract class MovableGameObject extends GameObject implements IMovable{
 	

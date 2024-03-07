@@ -1,6 +1,14 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.gamelaws;
 
 import java.util.Vector;
+
+import com.jdlc.asteroids.interfaces.IMovable;
+import com.jdlc.asteroids.objects.Asteroid;
+import com.jdlc.asteroids.objects.GameObject;
+import com.jdlc.asteroids.objects.Missile;
+import com.jdlc.asteroids.objects.NonPlayerShip;
+import com.jdlc.asteroids.objects.PlayerShip;
+import com.jdlc.asteroids.objects.SpaceStation;
 
 
 public class GameWorld {
