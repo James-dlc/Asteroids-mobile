@@ -2,21 +2,25 @@ package com.jdlc.asteroids;
 
 import java.util.Vector;
 
-import com.jdlc.asteroids.GameObjects.Asteroid;
-import com.jdlc.asteroids.GameObjects.Missile;
-import com.jdlc.asteroids.GameObjects.NonPlayerShip;
-import com.jdlc.asteroids.GameObjects.PlayerShip;
-import com.jdlc.asteroids.GameObjects.SpaceStation;
+import java.util.Observable;
+import com.codename1.ui.Dialog;
+import com.jdlc.asteroids.Interfaces.IGameWorld;
+import com.jdlc.asteroids.Interfaces.IIterator;
 import com.jdlc.asteroids.Interfaces.IMovable;
+import com.jdlc.asteroids.GameObjects.*;
 
 
-public class GameWorld {
+public class GameWorld extends Observable implements IGameWorld{
+	
 	public Vector<GameObject> gwObjects;
 	
 	private int score;
 	private int time;
 	private int lives;
+	private double mapWidth;
+	private double mapHeight;
 	private boolean gameOver;
+	private boolean soundToggle;
 	
 	// initializes GameWorld with starting variable values
 	public void init() {
@@ -409,12 +413,57 @@ public class GameWorld {
 		}
 		System.err.println("Player Ship not found.");
 	}
+	
+	/*
+	 * End search algorithms
+	 */
+	
+	
+	
+	/*
+	 * IGameWorld methods inherited by interface
+	 */
+	
+	@Override
+	public int getScore() {
+		// TODO Auto-generated method stub
+		return score;
+	}
+
+	@Override
+	public int getTime() {
+		// TODO Auto-generated method stub
+		return time;
+	}
+
+	@Override
+	public int getLives() {
+		// TODO Auto-generated method stub
+		return lives;
+	}
+
+	@Override
+	public int getMissileCount() {
+		// TODO Auto-generated method stub
+		PlayerShip ps = findPlayerShip();
+		return ps.getMissileCount();
+	}
+
+	@Override
+	public boolean getSoundSetting() {
+		// TODO Auto-generated method stub
+		return soundToggle;
+	}
+
+	@Override
+	public Vector<GameObject> getCollection() {
+		// TODO Auto-generated method stub
+		return this.gwObjects;
+	}
 }
 
 
-/*
- * End search algorithms
- */
+
 
 
 

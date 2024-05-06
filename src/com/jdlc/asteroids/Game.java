@@ -13,9 +13,23 @@ public class Game extends Form{
 	public Game() {
 		gw = new GameWorld();
 		gw.init();
+		
+		
+		
+		
+		
+		
+		
+		/*
+		 * Call to old portion of the code
 		play();
+		*/
 	}
 	
+	
+	/*
+	 * Old code that made a text box to test game object creation and other game functions
+	 * 
 	// Method to place player input/controls which the functions will be in GameWorld
 	private void play() {
 		Label myLabel = new Label("Enter a Command:");
@@ -143,6 +157,6 @@ public class Game extends Form{
 				} //switch
 			}//actionPerformed
 		} //new ActionListener()
-	); //addActionListener*/
-	}
+	); //addActionListener
+	} */
 }

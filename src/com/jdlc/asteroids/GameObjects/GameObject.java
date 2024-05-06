@@ -1,4 +1,4 @@
-package com.jdlc.asteroids;
+package com.jdlc.asteroids.GameObjects;
 import java.util.Random;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.geom.Point2D;

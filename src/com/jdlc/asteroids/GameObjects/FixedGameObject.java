@@ -1,7 +1,5 @@
 package com.jdlc.asteroids.GameObjects;
 
-import com.jdlc.asteroids.GameObject;
-
 public abstract class FixedGameObject extends GameObject{
 	
 	private static int fId = 0;
